@@ -10,8 +10,13 @@ import java.io.File;
 import java.nio.file.Path;
 
 public class CryptoInterfaceController {
-    FileManager fileManager;
-    File file;
+    public static File file;
+    @FXML
+    public TextField keyDecrypt;
+    @FXML
+    public TextField outputTextFieldDecrypt;
+    @FXML
+    public TextField outputTextBruteForce;
     @FXML
     private Button button;
     @FXML
@@ -32,15 +37,30 @@ public class CryptoInterfaceController {
         file = fileChooser.showOpenDialog(new Stage());
 
         // ВЫВОДИМ ИМЯ ФАЙЛА В КОНСОЛЬ, ИЛИ ИСПОЛЬЗУЕМ ПО НАЗНАЧЕНИЮ
+        System.out.println(file);
     }
 
     @FXML
     protected void onEncryptButtonClick() {
         int key = Integer.parseInt(keyEncrypt.getText());
         if (Validator.isValidKey(key)){
-            outputTextFieldEncrypt.setText(fileManager.writeFile(Cipher.encrypt(fileManager.readFile(String.valueOf(file)), key), "@/output_text"));
+            outputTextFieldEncrypt.setText(FileManager.writeFile(Cipher.encrypt(FileManager.readFile(String.valueOf(file)), key), "src\\main\\resources\\output_text"));
         }
         else outputTextFieldEncrypt.setText("ключ не подходит");
+    }
+
+    @FXML
+    protected void onDecryptButtonClick() {
+        int key = Integer.parseInt(keyDecrypt.getText());
+        if (Validator.isValidKey(key)){
+            outputTextFieldDecrypt.setText(FileManager.writeFile(Cipher.decrypt(FileManager.readFile(String.valueOf(file)), key), "src\\main\\resources\\output_text"));
+        }
+        else outputTextFieldDecrypt.setText("ключ не подходит");
+    }
+    @FXML
+    protected void onBruteForceButtonClick() {
+        outputTextBruteForce.setText(FileManager.writeFile(BruteForce.decryptByBruteForce(FileManager.readFile(String.valueOf(file))), "src\\main\\resources\\output_text"));
+
     }
 
 }

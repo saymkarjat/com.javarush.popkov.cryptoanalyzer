@@ -70,7 +70,7 @@
                         <Image url="@/1669427347-1046-www.lookw.net.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="397.0" layoutY="317.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="ОТКРЫТЬ ФАЙЛ" textFill="WHITE">
+                  <Button onAction="#onOpenFileButtonClick" layoutX="397.0" layoutY="317.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="ОТКРЫТЬ ФАЙЛ" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -93,13 +93,13 @@
                         <Font name="Han Zi" size="17.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="243.0" layoutY="420.0" prefHeight="30.0" prefWidth="48.0" />
-                  <Button contentDisplay="CENTER" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" prefHeight="138.0" prefWidth="276.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="GO" textAlignment="CENTER" textFill="WHITE">
+                  <TextField fx:id="keyDecrypt" layoutX="243.0" layoutY="420.0" prefHeight="30.0" prefWidth="48.0" />
+                  <Button onAction="#onDecryptButtonClick" contentDisplay="CENTER" layoutX="37.0" layoutY="539.0" mnemonicParsing="false" prefHeight="138.0" prefWidth="276.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="GO" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Han Zi" size="68.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="375.0" layoutY="576.0" prefHeight="65.0" prefWidth="476.0" />
+                  <TextField fx:id="outputTextFieldDecrypt" layoutX="375.0" layoutY="576.0" prefHeight="65.0" prefWidth="476.0" />
                   <Label layoutX="470.0" layoutY="550.0" text="ссылка на файл с результатом" textFill="WHITE">
                      <font>
                         <Font name="Han Zi" size="13.0" />
@@ -117,7 +117,7 @@
                         <Image url="@/1669427347-1046-www.lookw.net.jpg" />
                      </image>
                   </ImageView>
-                  <Button layoutX="320.0" layoutY="357.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="ОТКРЫТЬ ФАЙЛ" textFill="WHITE">
+                  <Button onAction="#onOpenFileButtonClick" layoutX="320.0" layoutY="357.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="248.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="ОТКРЫТЬ ФАЙЛ" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -135,12 +135,12 @@
                         <Font name="Han Zi" size="33.0" />
                      </font>
                   </Label>
-                  <Button contentDisplay="CENTER" layoutX="65.0" layoutY="530.0" mnemonicParsing="false" prefHeight="138.0" prefWidth="276.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="GO" textAlignment="CENTER" textFill="WHITE">
+                  <Button onAction="#onBruteForceButtonClick" contentDisplay="CENTER" layoutX="65.0" layoutY="530.0" mnemonicParsing="false" prefHeight="138.0" prefWidth="276.0" style="-fx-background-color: #404040; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: #FFFFFF;" text="GO" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Han Zi" size="68.0" />
                      </font>
                   </Button>
-                  <TextField layoutX="396.0" layoutY="567.0" prefHeight="65.0" prefWidth="476.0" />
+                  <TextField fx:id="outputTextBruteForce" layoutX="396.0" layoutY="567.0" prefHeight="65.0" prefWidth="476.0" />
                   <Label layoutX="491.0" layoutY="543.0" text="ссылка на файл с результатом" textFill="WHITE">
                      <font>
                         <Font name="Han Zi" size="13.0" />

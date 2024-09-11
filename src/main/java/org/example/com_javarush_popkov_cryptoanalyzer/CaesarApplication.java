@@ -19,5 +19,9 @@ public class CaesarApplication extends Application {
 
     public static void main(String[] args) {
         launch();
+//        System.out.println(FileManager.readFile(String.valueOf(CryptoInterfaceController.file)));
+//
+//        String result = Cipher.encrypt(FileManager.readFile(String.valueOf(CryptoInterfaceController.file)), 1);
+//        System.out.println(FileManager.writeFile(result, "src\\main\\resources\\output_text"));
     }
 }

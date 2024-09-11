@@ -6,7 +6,10 @@ import java.nio.file.Path;
 public class Validator {
     public static boolean isValidKey(int key) {
         // Проверка ключа
-        return Cipher.ALPHABET.length <= key;
+        if (key<=Cipher.ALPHABET.length){
+            return true;
+        }
+        else return false;
 
     }
     public static boolean isFileExists(String filePath) {
