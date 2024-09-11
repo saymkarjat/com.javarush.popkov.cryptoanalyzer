@@ -10,9 +10,9 @@ import java.io.IOException;
 public class CaesarApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(CaesarApplication.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        FXMLLoader fxmlLoader = new FXMLLoader(CaesarApplication.class.getResource("cryptoanalyzer.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 912, 751);
+        stage.setTitle("Cryptoanalyzer");
         stage.setScene(scene);
         stage.show();
     }

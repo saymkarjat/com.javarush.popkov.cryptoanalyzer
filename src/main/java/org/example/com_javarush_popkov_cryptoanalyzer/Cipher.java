@@ -17,45 +17,52 @@ public class Cipher {
     }
 
 
-    public String encrypt(String text, int shift) {
+    public static String encrypt(String text, int shift) {
         // Логика шифрования
-        fillTheMap();
-        StringBuilder encryptString = new StringBuilder();
-        for (Character c : text.toCharArray()) {
-            if (alphabetMap.containsKey(c)) {
-                int initialIndex = alphabetMap.get(c);
-                c = ALPHABET[(initialIndex + shift) % ALPHABET.length];
-                encryptString.append(c);
-            //проверка если буква является заглавной
-            } else if (alphabetMap.containsKey(Character.toLowerCase(c))) {
-                int initialIndex = alphabetMap.get(Character.toLowerCase(c));
-                c = Character.toUpperCase(ALPHABET[(initialIndex + shift) % ALPHABET.length]);
-                encryptString.append(c);
-            } else encryptString.append(c);
-        }
+        if (Validator.isValidKey(shift)){
+            fillTheMap();
+            StringBuilder encryptString = new StringBuilder();
+            for (Character c : text.toCharArray()) {
+                if (alphabetMap.containsKey(c)) {
+                    int initialIndex = alphabetMap.get(c);
+                    c = ALPHABET[(initialIndex + shift) % ALPHABET.length];
+                    encryptString.append(c);
+                    //проверка если буква является заглавной
+                } else if (alphabetMap.containsKey(Character.toLowerCase(c))) {
+                    int initialIndex = alphabetMap.get(Character.toLowerCase(c));
+                    c = Character.toUpperCase(ALPHABET[(initialIndex + shift) % ALPHABET.length]);
+                    encryptString.append(c);
+                } else encryptString.append(c);
+            }
 
-        return encryptString.toString();
+            return encryptString.toString();
+        }
+        else throw new InvalidEncryptionKeyException("ключ не подходит");
     }
 
-    public String decrypt(String encryptedText, int shift) {
+    public static String decrypt(String encryptedText, int shift) {
         // Логика расшифровки
-        fillTheMap();
-        StringBuilder decryptString = new StringBuilder();
-        for (Character c : encryptedText.toCharArray()) {
-            if (alphabetMap.containsKey(c)) {
-                int initialIndex = alphabetMap.get(c);
-                c = ALPHABET[(ALPHABET.length + initialIndex - shift) % ALPHABET.length];
-                decryptString.append(c);
-                //проверка если буква является заглавной
-            } else if (alphabetMap.containsKey(Character.toLowerCase(c))) {
-                int initialIndex = alphabetMap.get(Character.toLowerCase(c));
-                c = Character.toUpperCase(ALPHABET[(ALPHABET.length + initialIndex - shift) % ALPHABET.length]);
-                decryptString.append(c);
-            } else decryptString.append(c);
-        }
+        if (Validator.isValidKey(shift)){
+            fillTheMap();
+            StringBuilder decryptString = new StringBuilder();
+            for (Character c : encryptedText.toCharArray()) {
+                if (alphabetMap.containsKey(c)) {
+                    int initialIndex = alphabetMap.get(c);
+                    c = ALPHABET[(ALPHABET.length + initialIndex - shift) % ALPHABET.length];
+                    decryptString.append(c);
+                    //проверка если буква является заглавной
+                } else if (alphabetMap.containsKey(Character.toLowerCase(c))) {
+                    int initialIndex = alphabetMap.get(Character.toLowerCase(c));
+                    c = Character.toUpperCase(ALPHABET[(ALPHABET.length + initialIndex - shift) % ALPHABET.length]);
+                    decryptString.append(c);
+                } else decryptString.append(c);
+            }
 
-        return decryptString.toString();
+            return decryptString.toString();
+        }
+        else throw new InvalidEncryptionKeyException("ключ не подходит");
     }
+
 
 
 }
