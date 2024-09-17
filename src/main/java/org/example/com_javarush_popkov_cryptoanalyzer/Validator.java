@@ -6,7 +6,7 @@ import java.nio.file.Path;
 public class Validator {
     public static boolean isValidKey(int key) {
         // Проверка ключа
-        if (key<=Cipher.ALPHABET.length){
+        if (key<=Cipher.ALPHABET.length && key > 0){
             return true;
         }
         else return false;

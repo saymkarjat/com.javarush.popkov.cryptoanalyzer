@@ -14,6 +14,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class FileManager {
+     public static String DIRECTORY_PATH = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "output_text";
+
     public static String readFile(String filePath) {
         // Логика чтения файла|
         File file = new File(filePath);

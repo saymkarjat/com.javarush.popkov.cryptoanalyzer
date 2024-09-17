@@ -7,6 +7,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 
 public class CryptoInterfaceController {
@@ -35,6 +36,14 @@ public class CryptoInterfaceController {
         fileChooser.setTitle("ОТКРЫТЬ ФАЙЛ");
         // В МОМЕНТ ВЫБОРА ФАЙЛА ПУТЬ К НЕМУ ЗАПИШЕТСЯ В ПЕРЕМЕННУЮ file
         file = fileChooser.showOpenDialog(new Stage());
+       try {
+           if (!Validator.isFileExists(String.valueOf(file))){
+               throw new FileNotFoundException();
+           }
+       }
+       catch (FileNotFoundException e){
+           throw new RuntimeException("File not exist");
+       }
 
         // ВЫВОДИМ ИМЯ ФАЙЛА В КОНСОЛЬ, ИЛИ ИСПОЛЬЗУЕМ ПО НАЗНАЧЕНИЮ
         System.out.println(file);
@@ -44,7 +53,7 @@ public class CryptoInterfaceController {
     protected void onEncryptButtonClick() {
         int key = Integer.parseInt(keyEncrypt.getText());
         if (Validator.isValidKey(key)){
-            outputTextFieldEncrypt.setText(FileManager.writeFile(Cipher.encrypt(FileManager.readFile(String.valueOf(file)), key), "src\\main\\resources\\output_text"));
+            outputTextFieldEncrypt.setText(FileManager.writeFile(Cipher.encrypt(FileManager.readFile(String.valueOf(file)), key), FileManager.DIRECTORY_PATH));
         }
         else outputTextFieldEncrypt.setText("ключ не подходит");
     }
@@ -53,13 +62,13 @@ public class CryptoInterfaceController {
     protected void onDecryptButtonClick() {
         int key = Integer.parseInt(keyDecrypt.getText());
         if (Validator.isValidKey(key)){
-            outputTextFieldDecrypt.setText(FileManager.writeFile(Cipher.decrypt(FileManager.readFile(String.valueOf(file)), key), "src\\main\\resources\\output_text"));
+            outputTextFieldDecrypt.setText(FileManager.writeFile(Cipher.decrypt(FileManager.readFile(String.valueOf(file)), key), FileManager.DIRECTORY_PATH));
         }
         else outputTextFieldDecrypt.setText("ключ не подходит");
     }
     @FXML
     protected void onBruteForceButtonClick() {
-        outputTextBruteForce.setText(FileManager.writeFile(BruteForce.decryptByBruteForce(FileManager.readFile(String.valueOf(file))), "src\\main\\resources\\output_text"));
+        outputTextBruteForce.setText(FileManager.writeFile(BruteForce.decryptByBruteForce(FileManager.readFile(String.valueOf(file))), FileManager.DIRECTORY_PATH));
 
     }
 
