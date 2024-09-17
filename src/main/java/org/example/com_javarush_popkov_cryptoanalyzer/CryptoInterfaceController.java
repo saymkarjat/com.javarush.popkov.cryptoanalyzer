@@ -36,14 +36,13 @@ public class CryptoInterfaceController {
         fileChooser.setTitle("ОТКРЫТЬ ФАЙЛ");
         // В МОМЕНТ ВЫБОРА ФАЙЛА ПУТЬ К НЕМУ ЗАПИШЕТСЯ В ПЕРЕМЕННУЮ file
         file = fileChooser.showOpenDialog(new Stage());
-       try {
-           if (!Validator.isFileExists(String.valueOf(file))){
-               throw new FileNotFoundException();
-           }
-       }
-       catch (FileNotFoundException e){
-           throw new RuntimeException("File not exist");
-       }
+        try {
+            if (!Validator.isFileExists(String.valueOf(file))) {
+                throw new FileNotFoundException();
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File not exist");
+        }
 
         // ВЫВОДИМ ИМЯ ФАЙЛА В КОНСОЛЬ, ИЛИ ИСПОЛЬЗУЕМ ПО НАЗНАЧЕНИЮ
         System.out.println(file);
@@ -52,20 +51,19 @@ public class CryptoInterfaceController {
     @FXML
     protected void onEncryptButtonClick() {
         int key = Integer.parseInt(keyEncrypt.getText());
-        if (Validator.isValidKey(key)){
+        if (Validator.isValidKey(key)) {
             outputTextFieldEncrypt.setText(FileManager.writeFile(Cipher.encrypt(FileManager.readFile(String.valueOf(file)), key), FileManager.DIRECTORY_PATH));
-        }
-        else outputTextFieldEncrypt.setText("ключ не подходит");
+        } else outputTextFieldEncrypt.setText("ключ не подходит");
     }
 
     @FXML
     protected void onDecryptButtonClick() {
         int key = Integer.parseInt(keyDecrypt.getText());
-        if (Validator.isValidKey(key)){
+        if (Validator.isValidKey(key)) {
             outputTextFieldDecrypt.setText(FileManager.writeFile(Cipher.decrypt(FileManager.readFile(String.valueOf(file)), key), FileManager.DIRECTORY_PATH));
-        }
-        else outputTextFieldDecrypt.setText("ключ не подходит");
+        } else outputTextFieldDecrypt.setText("ключ не подходит");
     }
+
     @FXML
     protected void onBruteForceButtonClick() {
         outputTextBruteForce.setText(FileManager.writeFile(BruteForce.decryptByBruteForce(FileManager.readFile(String.valueOf(file))), FileManager.DIRECTORY_PATH));

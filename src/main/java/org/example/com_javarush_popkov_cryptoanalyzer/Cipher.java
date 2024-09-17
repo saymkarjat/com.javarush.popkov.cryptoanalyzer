@@ -10,7 +10,7 @@ public class Cipher {
 
     public static final Map<Character, Integer> alphabetMap = new HashMap<>();
 
-    private static void fillTheMap(){
+    private static void fillTheMap() {
         for (int i = 0; i < ALPHABET.length; i++) {
             alphabetMap.put(ALPHABET[i], i);
         }
@@ -25,16 +25,16 @@ public class Cipher {
         return crypt(text, shift, -1);
     }
 
-    public static String crypt(String text, int shift, int factor){
+    public static String crypt(String text, int shift, int factor) {
         // Логика
-        if (Validator.isValidKey(shift)){
+        if (Validator.isValidKey(shift)) {
             fillTheMap();
             StringBuilder encryptString = new StringBuilder();
             for (Character c : text.toCharArray()) {
                 if (alphabetMap.containsKey(c)) {
                     int initialIndex = alphabetMap.get(c);
-                    int targetIndex = (initialIndex + shift*factor) % ALPHABET.length;
-                    if (targetIndex < 0){
+                    int targetIndex = (initialIndex + shift * factor) % ALPHABET.length;
+                    if (targetIndex < 0) {
                         targetIndex = ALPHABET.length + targetIndex;
                     }
                     c = ALPHABET[targetIndex];
@@ -42,8 +42,8 @@ public class Cipher {
                     //проверка если буква является заглавной
                 } else if (alphabetMap.containsKey(Character.toLowerCase(c))) {
                     int initialIndex = alphabetMap.get(Character.toLowerCase(c));
-                    int targetIndex = (initialIndex + shift*factor) % ALPHABET.length;
-                    if (targetIndex < 0){
+                    int targetIndex = (initialIndex + shift * factor) % ALPHABET.length;
+                    if (targetIndex < 0) {
                         targetIndex = ALPHABET.length + targetIndex;
                     }
                     c = Character.toUpperCase(ALPHABET[targetIndex]);
@@ -52,8 +52,7 @@ public class Cipher {
             }
 
             return encryptString.toString();
-        }
-        else throw new InvalidEncryptionKeyException("ключ не подходит");
+        } else throw new InvalidEncryptionKeyException("ключ не подходит");
     }
 
 

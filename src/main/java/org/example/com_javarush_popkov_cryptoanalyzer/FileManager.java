@@ -14,22 +14,22 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class FileManager {
-     public static String DIRECTORY_PATH = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "output_text";
+    public static String DIRECTORY_PATH = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "output_text";
 
     public static String readFile(String filePath) {
         // Логика чтения файла|
         File file = new File(filePath);
         StringBuilder stringBuilder = new StringBuilder();
-       try(Scanner scn = new Scanner(file)){
-        while (scn.hasNextLine()) {
-            stringBuilder.append(scn.nextLine());
+        try (Scanner scn = new Scanner(file)) {
+            while (scn.hasNextLine()) {
+                stringBuilder.append(scn.nextLine());
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
         }
-       }
-       catch (FileNotFoundException e) {
-           throw new RuntimeException(e);
-       }
         return stringBuilder.toString();
     }
+
     public static String writeFile(String content, String directoryPath) {
         // Логика записи файла
         try {
@@ -41,7 +41,7 @@ public class FileManager {
             Path filePath = Path.of(directoryPath, fileName);
 
             // Запись содержимого в новый файл
-            Files.writeString(filePath, content.replace("\n", System.lineSeparator()), StandardCharsets.UTF_8);
+            Files.writeString(filePath, content);
             return filePath.toAbsolutePath().toString();
         } catch (IOException e) {
             throw new RuntimeException("Ошибка при записи файла", e);

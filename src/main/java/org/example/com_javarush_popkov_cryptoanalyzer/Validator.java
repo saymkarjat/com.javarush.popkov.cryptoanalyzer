@@ -6,18 +6,17 @@ import java.nio.file.Path;
 public class Validator {
     public static boolean isValidKey(int key) {
         // Проверка ключа
-        if (key<=Cipher.ALPHABET.length && key > 0){
+        if (key <= Cipher.ALPHABET.length && key > 0) {
             return true;
-        }
-        else return false;
+        } else return false;
 
     }
+
     public static boolean isFileExists(String filePath) {
         // Проверка существования файла
-        if(Files.exists(Path.of(filePath))){
+        if (Files.exists(Path.of(filePath))) {
             return true;
-        }
-        else return false;
+        } else return false;
 
     }
 }
